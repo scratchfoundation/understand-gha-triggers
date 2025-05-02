@@ -24,3 +24,5 @@ jobs:
           needs: ${{toJSON(needs)}}
           inputs: ${{toJSON(inputs)}}
           EOF
+      - name: Dump environment
+        run: env

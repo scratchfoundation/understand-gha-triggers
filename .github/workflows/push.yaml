@@ -8,9 +8,13 @@ jobs:
     name: push
     runs-on: ubuntu-latest
     steps:
+      - name: branch name to env
+        id: branch_dir_name
+        run: echo "result=${GITHUB_REF_NAME//[^A-Za-z0-9._-]/_}" | tee "$GITHUB_OUTPUT"
       - name: Event context info
         run: |
           cat <<'EOF'
+          Sanitized branch dir name: ${{ steps.branch_dir_name.outputs.result }}
           github: ${{toJSON(github)}}
           env: ${{toJSON(env)}}
           vars: ${{toJSON(vars)}}

@@ -48,6 +48,8 @@ make_workflow () {
 		echo "          needs: \${{toJSON(needs)}}"
 		echo "          inputs: \${{toJSON(inputs)}}"
 		echo "          EOF"
+		echo "      - name: Dump environment"
+		echo "        run: env"
 	) > ".github/workflows/${workflow_id}.yaml"
 }
 
